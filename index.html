@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Start Questionnaire</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding-top: 100px;
+      background-color: #f7f7f7;
+    }
+    button {
+      font-size: 1.2em;
+      padding: 10px 20px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Welcome to the Study</h1>
+  <p>Click the button below to begin your questionnaire.</p>
+  <button onclick="startSurvey()">Start Questionnaire</button>
+
+  <script>
+    function startSurvey() {
+      const links = [
+        "https://docs.google.com/forms/d/e/FORM_ID_1/viewform?usp=sf_link",
+        "https://docs.google.com/forms/d/e/FORM_ID_2/viewform?usp=sf_link",
+        "https://docs.google.com/forms/d/e/FORM_ID_3/viewform?usp=sf_link",
+        "https://docs.google.com/forms/d/e/FORM_ID_4/viewform?usp=sf_link"
+      ];
+
+      let assigned = localStorage.getItem("assignedForm");
+
+      if (assigned === null) {
+        const rand = Math.floor(Math.random() * links.length);
+        localStorage.setItem("assignedForm", rand);
+        assigned = rand;
+      }
+
+      window.location.href = links[assigned];
+    }
+  </script>
+
+</body>
+</html>
